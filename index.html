@@ -5,7 +5,8 @@
         <title>Garbage Bin Color Calculation</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <!--script src="http://code.jquery.com/jquery-2.1.1.min.js"></script-->
+        <script src="jquery-3.3.1.min.js"></script>
         <style type="text/css">
             .outframe{ width: 100% !Important; border-width: 5px; color: red;}
         </style>
@@ -35,7 +36,8 @@ $(document).ready(function(){
     var timeDiff = Math.abs(today.getTime() - buleBenchMarkDate.getTime());
     var numberOfDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
 
-    var days2target = 7 - numberOfDays % 7;
+    var daysPassed2LastWeek = numberOfDays % 7;
+    var days2target = (daysPassed2LastWeek == 0? 0: 7) - daysPassed2LastWeek;
     var days2Blue = numberOfDays % 14;
 
     $(".div-title h2").text(new Date(today.getTime() + days2target * 1000 * 3600 * 24).toLocaleDateString());
