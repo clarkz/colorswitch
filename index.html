@@ -31,10 +31,10 @@
 $(document).ready(function(){
     console.log('ready');
 
-    var buleBenchMarkDate = new Date(2018, 10, 12);
+    var buleBenchMarkDate = new Date('2018-10-15');// new Date(2018, 10, 15);
     var today = new Date(new Date().toLocaleDateString());
     var timeDiff = Math.abs(today.getTime() - buleBenchMarkDate.getTime());
-    var numberOfDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+    var numberOfDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
     var daysPassed2LastWeek = numberOfDays % 7;
     var days2target = (daysPassed2LastWeek == 0? 0: 7) - daysPassed2LastWeek;
