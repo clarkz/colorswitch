@@ -34,15 +34,17 @@ $(document).ready(function(){
     var buleBenchMarkDate = new Date('2018-10-15');// new Date(2018, 10, 15);
     var today = new Date(new Date().toLocaleDateString());
     var timeDiff = Math.abs(today.getTime() - buleBenchMarkDate.getTime());
-    var numberOfDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    var numberOfDays = Math.trunc(timeDiff / (1000 * 3600 * 24));
 
     var daysPassed2LastWeek = numberOfDays % 7;
     var days2target = (daysPassed2LastWeek == 0? 0: 7) - daysPassed2LastWeek;
     var days2Blue = numberOfDays % 14;
 
-    $(".div-title h2").text(new Date(today.getTime() + days2target * 1000 * 3600 * 24).toLocaleDateString());
+    var targetDate = formateDate(new Date(new Date().getTime() + days2target * 1000 * 3600 * 24));
 
-    if(days2Blue <= 7){
+    $(".div-title h2").text(targetDate);
+
+    if(days2Blue && days2Blue <= 7){
         $(".div-title h2, .div-description h2").css("color", "black");
         $(".div-description h2").text("Black Garbage Bin");
     }else{
@@ -50,4 +52,16 @@ $(document).ready(function(){
         $(".div-description h2").text("Blue Recycle Bin");
     }
 });
+
+var formateDate = function(aDay) {
+    var d = aDay.getDate();
+    if(d < 10) d = '0' + d;
+    var m = aDay.getMonth() + 1;  // JavaScript months are 0-11
+    if(m < 10) m = '0' + m;
+
+    var y = aDay.getFullYear();
+
+    return y + '-' + m + '-' + d;
+};
+
 </script>
